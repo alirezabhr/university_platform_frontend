@@ -1,7 +1,6 @@
-import UserPosition from "./user_position"
 import User from "./user"
 
-class Student extends UserPosition {
+class Student {
     sid: number
     degree: string
     start_date: string
@@ -9,8 +8,7 @@ class Student extends UserPosition {
     advisor_id: number
     department: string
 
-    constructor(user: User, username: string, sid: number, degree: string, start_date: string, membership_type: string, advisor_id: number, department: string) {
-        super(user, username)
+    constructor(sid: number, degree: string, start_date: string, membership_type: string, advisor_id: number, department: string) {
         this.sid = sid
         this.degree = degree
         this.start_date = start_date

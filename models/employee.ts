@@ -1,14 +1,12 @@
-import UserPosition from "./user_position"
 import User from "./user"
 
-class Employee extends UserPosition {
+class Employee {
     id: number
     position: string
     start_date: string
     department: string
 
-    constructor(user: User, username: string, id: number, position: string, start_date: string, department: string) {
-        super(user, username)
+    constructor(id: number, position: string, start_date: string, department: string) {
         this.id = id
         this.position = position
         this.start_date = start_date
