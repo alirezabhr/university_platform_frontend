@@ -1,7 +1,7 @@
-import User from "./user"
+import UserPosition from "./user_position"
+import userPositionTypes from "~/models/enums/user_position_types"
 
-class Student {
-    sid: number
+class Student extends UserPosition {
     degree: string
     start_date: string
     membership_type: string
@@ -9,7 +9,7 @@ class Student {
     department: string
 
     constructor(sid: number, degree: string, start_date: string, membership_type: string, advisor_id: number, department: string) {
-        this.sid = sid
+        super(sid, `Student ${degree} ${start_date}`, userPositionTypes.STUDENT)
         this.degree = degree
         this.start_date = start_date
         this.membership_type = membership_type
