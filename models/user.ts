@@ -10,6 +10,7 @@ class User {
     phone: string
     address: string
     wallet: number
+    token: string
     student_infos: Student[]
     teacher_infos: Teacher[]
     employee_infos: Employee[]
@@ -23,6 +24,7 @@ class User {
         phone: string,
         address: string,
         wallet: number,
+        token: string,
         student_infos: Student[],
         teacher_infos: Teacher[],
         employee_infos: Employee[]
@@ -34,6 +36,7 @@ class User {
         this.phone = phone
         this.address = address
         this.wallet = wallet
+        this.token = token
         this.student_infos = student_infos
         this.teacher_infos = teacher_infos
         this.employee_infos = employee_infos
