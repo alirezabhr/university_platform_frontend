@@ -1,3 +1,3 @@
-enum userPositionTypes {STUDENT, TEACHER, EMPLOYEE}
+enum UserPositionTypes {STUDENT, TEACHER, EMPLOYEE}
 
-export default userPositionTypes
+export default UserPositionTypes
