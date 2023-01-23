@@ -10,10 +10,11 @@
 </template>
 
 <script>
-import { mapActions, mapGetters } from 'vuex'
-
 export default {
     name: 'SectionStudentsPage',
+    mounted() {
+        this.getStudents()
+    },
     data: () => ({
         headers: [
             { text: 'No.', value: 'number' },
@@ -21,31 +22,15 @@ export default {
             { text: 'Student First Name', value: 'first_name' },
             { text: 'Student Last Name', value: 'last_name' },
         ],
+        students: []
     }),
-    computed: {
-        ...mapGetters(),
-        
-        students() {
-            return [
-                {
-                    number: 1,
-                    sid: 9832089,
-                    first_name: 'alireza',
-                    last_name: 'bahrol'
-                },
-                {
-                    number: 2,
-                    sid: 9923141,
-                    first_name: 'asfd',
-                    last_name: 'ewqrew'
-                },
-                {
-                    number: 3,
-                    sid: 318345,
-                    first_name: 'afare 3',
-                    last_name: 'familish'
-                },
-            ]
+    methods: {
+        getStudents() {
+            const url = process.env.baseURL + `section/${this.$route.params.section_id}/students/`
+            this.$axios.get(url).then((resp)=> {
+                this.students = resp.data
+                this.students.map((el) => el.number = this.students.indexOf(el)+1)
+            })
         }
     }
 }
