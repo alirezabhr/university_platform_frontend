@@ -5,6 +5,7 @@ import { RootState } from '../index'
 import localStorageKeys from '~/models/enums/local_storage'
 import User from '~/models/user'
 import UserPosition from '~/models/user_position'
+import UserPositionTypes from '~/models/enums/user_position_types'
 
 const namespace = 'auth'
 
@@ -24,14 +25,38 @@ const mutations = <MutationTree<AuthState>>{
       return
     }
 
-    // initial username
-    const userIdStr = localStorage.getItem(localStorageKeys.User)
-    if (userIdStr) {
-      state.user = JSON.parse(userIdStr)
+    // initial user
+    const userStr = localStorage.getItem(localStorageKeys.USER)
+    if (userStr) {
+      state.user = JSON.parse(userStr)
+    }
+
+    // initial user current position
+    const userPositionStr = localStorage.getItem(localStorageKeys.USER_POSITION)
+    if (userPositionStr) {
+      state.userPosition = JSON.parse(userPositionStr)
     }
   },
   setUser(state , user: User) {
-    state.user = user
+    const updatedUser = {
+      ...user,
+      student_infos: user.student_infos.map((el:any) => ({...el, id: el.sid, positionType: UserPositionTypes.STUDENT, title: `Student ${el.degree} ${el.start_date}`})),
+      teacher_infos: user.teacher_infos.map((el) => ({...el, positionType: UserPositionTypes.TEACHER, title: `Teacher ${el.position} ${el.start_date}`})),
+      employee_infos: user.employee_infos.map((el) => ({...el, positionType: UserPositionTypes.EMPLOYEE, title: `Employee ${el.position} ${el.start_date}`})),
+    }
+    state.user = updatedUser
+    if(updatedUser.student_infos.length) {
+      state.userPosition = updatedUser.student_infos[0]
+    }
+    if(updatedUser.teacher_infos.length) {
+      state.userPosition = updatedUser.teacher_infos[0]
+    }
+    if(updatedUser.employee_infos.length) {
+      state.userPosition = updatedUser.employee_infos[0]
+    }
+
+    localStorage.setItem(localStorageKeys.USER, JSON.stringify(state.user))
+    localStorage.setItem(localStorageKeys.USER_POSITION, JSON.stringify(state.userPosition))
   },
   setUserPosition(state, position: UserPosition) {
     state.userPosition = position
@@ -51,11 +76,11 @@ const actions = <ActionTree<AuthState, RootState>>{
 
     return axios.post(
       url,
-      payload
+      payload,
     ).then((response) => {
       vuexContext.commit('setUser', response.data)
-      localStorage.setItem(localStorageKeys.User, JSON.stringify(response.data))
     }).catch((e) => {
+      console.error(e)
       throw e.response.data
     })
   },
