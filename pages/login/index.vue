@@ -68,7 +68,7 @@ export default {
 
     loginSubmit () {
       if (this.$refs.form.validate()) {
-        this.login().then(() => {
+        this.login({username: this.username, password: this.password}).then(() => {
           this.$router.push('/')
         }).catch((msg) => {
           this.snackbarMessage = msg
