@@ -7,7 +7,7 @@ class Employee extends UserPosition{
     department: string
 
     constructor(id: number, position: string, start_date: string, department: string) {
-        super(id, `Teacher ${position} ${start_date}`, userPositionTypes.EMPLOYEE)
+        super(id, `Employee ${position} ${start_date}`, userPositionTypes.EMPLOYEE)
         this.position = position
         this.start_date = start_date
         this.department = department
