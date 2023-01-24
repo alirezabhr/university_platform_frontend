@@ -6,10 +6,9 @@ class Student extends UserPosition {
     start_date: string
     membership_type: string
     advisor_id: number
-    department: string
 
     constructor(sid: number, degree: string, start_date: string, membership_type: string, advisor_id: number, department: string) {
-        super(sid, `Student ${degree} ${start_date}`, userPositionTypes.STUDENT)
+        super(sid, `Student ${degree} ${start_date}`, userPositionTypes.STUDENT, department)
         this.degree = degree
         this.start_date = start_date
         this.membership_type = membership_type

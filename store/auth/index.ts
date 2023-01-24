@@ -40,9 +40,9 @@ const mutations = <MutationTree<AuthState>>{
   setUser(state , user: User) {
     const updatedUser = {
       ...user,
-      student_infos: user.student_infos.map((el:any) => ({...el, id: el.sid, positionType: UserPositionTypes.STUDENT, title: `Student ${el.degree} ${el.start_date}`})),
-      teacher_infos: user.teacher_infos.map((el) => ({...el, positionType: UserPositionTypes.TEACHER, title: `Teacher ${el.position} ${el.start_date}`})),
-      employee_infos: user.employee_infos.map((el) => ({...el, positionType: UserPositionTypes.EMPLOYEE, title: `Employee ${el.position} ${el.start_date}`})),
+      student_infos: user.student_infos.map((el:any) => ({...el, id: el.sid, positionType: UserPositionTypes.STUDENT, title: `Student ${el.degree} ${el.start_date}`, department: el.department})),
+      teacher_infos: user.teacher_infos.map((el) => ({...el, id:el.id, positionType: UserPositionTypes.TEACHER, title: `Teacher ${el.position} ${el.start_date}`, department: el.department})),
+      employee_infos: user.employee_infos.map((el) => ({...el,id:el.id, positionType: UserPositionTypes.EMPLOYEE, title: `Employee ${el.position} ${el.start_date}`, department: el.department})),
     }
     state.user = updatedUser
     if(updatedUser.student_infos.length) {
@@ -111,6 +111,9 @@ const getters = <GetterTree<AuthState, RootState>>{
       });
     }
     return arr
+  },
+  isStudentUser: (state) => {
+    return state.userPosition!.positionType == UserPositionTypes.STUDENT
   },
   isAuthenticated: (state) => {
     return !!state.user
