@@ -18,7 +18,7 @@
             @click.prevent="$router.push(`section/${item.id}/`)"
           >
             <td>{{ item.course_id }}</td>
-            <td>{{ item.name }}</td>
+            <td>{{ item.course_name }}</td>
             <td>{{ item.credit }}</td>
             <td>{{ item.department }}</td>
             <td>{{ item.class_room }}</td>
