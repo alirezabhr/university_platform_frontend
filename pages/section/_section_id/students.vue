@@ -21,6 +21,7 @@ export default {
             { text: 'Student ID', value: 'sid' },
             { text: 'Student First Name', value: 'first_name' },
             { text: 'Student Last Name', value: 'last_name' },
+            { text: 'Student Degree', value: 'degree' },
         ],
         students: []
     }),
