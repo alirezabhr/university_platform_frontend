@@ -97,6 +97,21 @@ const getters = <GetterTree<AuthState, RootState>>{
   getUserCurrenctPosition: (state) : UserPosition | null => {
     return state.userPosition
   },
+  getUserPositions: (state) : UserPosition[] => {
+    const arr :UserPosition[] = []
+    if (state.user) {
+      state.user.student_infos.forEach(std => {
+        arr.push(std)
+      });
+      state.user.teacher_infos.forEach(t => {
+        arr.push(t)
+      });
+      state.user.employee_infos.forEach(emp => {
+        arr.push(emp)
+      });
+    }
+    return arr
+  },
   isAuthenticated: (state) => {
     return !!state.user
   }
