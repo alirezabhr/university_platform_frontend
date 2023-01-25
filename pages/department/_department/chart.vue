@@ -1,11 +1,17 @@
 <template>
   <v-col>
     <v-row v-for="(course, index) in chart" :key="index">
-        <div>Course Suggested Term: {{ course.suggested_term }}</div>
-        <div>Course ID: {{ course.course_id }}</div>
-        <div>Course Name: {{ course.course_name }}</div>
-        <div>Credits: {{ course.credit }}</div>
-        <div>Prerequiesite: {{ course.pishniaz_course_term }}</div>
+        <v-card class="ma-4 pa-4" width="100%">
+            <v-card-subtitle class="py-2 font-weight-bold">Course Suggested Term: {{ course.suggested_term }}</v-card-subtitle>
+            <v-card-subtitle class="py-2 font-weight-bold">Course ID: {{ course.course_id }}</v-card-subtitle>
+            <v-card-subtitle class="py-2 font-weight-bold">Course Name: {{ course.course_name }}</v-card-subtitle>
+            <v-card-subtitle class="py-2 font-weight-bold">Credits: {{ course.credit }}</v-card-subtitle>
+            <v-card-subtitle class="py-2 font-weight-bold">Prerequiesites:
+                <span v-for="(pishniaz, index) in course.pishniaz_course_term" :key="index">
+                    {{ pishniaz }}
+                </span>
+            </v-card-subtitle>
+        </v-card>
     </v-row>
   </v-col>
 </template>
