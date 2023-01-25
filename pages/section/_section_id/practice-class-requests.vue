@@ -121,11 +121,7 @@ export default {
       }
     },
     computed: {
-      ...mapGetters('auth', ['getUser', 'getUserCurrenctPosition']),
-
-      isStudentUser() {
-        return this.getUserCurrenctPosition.positionType == UserPositionType.STUDENT
-      }
+      ...mapGetters('auth', ['getUser', 'getUserCurrenctPosition', 'isStudentUser'])
     }
 }
 </script>

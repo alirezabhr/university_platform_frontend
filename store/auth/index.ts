@@ -115,6 +115,9 @@ const getters = <GetterTree<AuthState, RootState>>{
   isStudentUser: (state) => {
     return state.userPosition!.positionType == UserPositionTypes.STUDENT
   },
+  isTeacherUser: (state) => {
+    return state.userPosition!.positionType == UserPositionTypes.TEACHER
+  },
   isAuthenticated: (state) => {
     return !!state.user
   }
