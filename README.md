@@ -2,6 +2,8 @@
 
 A university portal website developed using Nuxt.js for a database course project.
 
+Database queries are available [here](https://github.com/alirezabhr/db_course_project).
+
 
 ## Introduction
 This project was developed in a limited timeframe of 5 days for a university course as a final project. Due to the limited time, the code may not be as clean and optimized as it could be. The focus was primarily on meeting the requirements of the course and completing the project within the deadline while also working on the backend and database
